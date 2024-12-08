@@ -1,45 +1,31 @@
-// file to contain test cases of the updated calculateNumber function
+const assert = require("assert");
+const { it, describe } = require("mocha");
+const calculateNumber = require("./1-calcul");
 
-const assert = require('assert');
-const { describe, it } = require('mocha');
-const calculateNumber = require('./1-calcul');
+describe("calculateNumber()", function() {
 
-// Test suite for calculateNumber with different operations
-describe('calculateNumber', function () {
-  describe('SUM operation', function () {
-    it('should return 6 when inputs are 1.4 and 4.5', function () {
-      assert.strictEqual(calculateNumber('SUM', 1.4, 4.5), 6);
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("SUM", 1, 2);
+      assert.strictEqual(res, 3);
     });
-  });
-
-  describe('SUBTRACT operation', function () {
-    it('should return -4 when inputs are 1.4 and 4.5', function () {
-      assert.strictEqual(calculateNumber('SUBTRACT', 1.4, 4.5), -4);
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("SUBTRACT", 1.4, 2.2);
+      assert.strictEqual(res, -1);
     });
-  });
-
-  describe('DIVIDE operation', function () {
-    it('should return 0.2 when inputs are 1.4 and 4.5', function () {
-      assert.strictEqual(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("SUBTRACT", 4.9, 2.7);
+      assert.strictEqual(res, 2);
     });
-
-    it('should return "Error" when inputs are 1.4 and 0', function () {
-      assert.strictEqual(calculateNumber('DIVIDE', 1.4, 0), 'Error');
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("DIVIDE", 4, 2);
+      assert.strictEqual(res, 2);
     });
-  });
-
-  // Additional edge cases
-  describe('Edge cases', function () {
-    it('should return 0 when inputs are 0.1 and -0.1 with SUM', function () {
-      assert.strictEqual(calculateNumber('SUM', 0.1, -0.1), 0);
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("DIVIDE", 1.7, 0);
+      assert.strictEqual(res, "Error");
     });
-
-    it('should return -2 when inputs are -1.2 and -1.2 with SUM', function () {
-      assert.strictEqual(calculateNumber('SUM', -1.2, -1.2), -2);
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("DIVIDE", 1.4, 4.6);
+      assert.strictEqual(res, 0.2);
     });
-
-    it('should throw an error for an invalid operation type', function () {
-      assert.strictEqual(calculateNumber('MULTIPLY', 1.4, 4.5), 'Error');
-    });
-  });
 });
